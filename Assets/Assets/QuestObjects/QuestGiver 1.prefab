@@ -1174,6 +1174,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bf88d097497824247aa73d57095be33b, type: 3}
   completion:
   - {fileID: 8300000, guid: 45f9e79b6e140d044a42e2a8ebd41522, type: 3}
+  text: 
+  UIpopuptime: 5
 --- !u!65 &488327638631480458
 BoxCollider:
   m_ObjectHideFlags: 0

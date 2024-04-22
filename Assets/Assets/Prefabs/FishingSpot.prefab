@@ -257,4 +257,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b435915188a750e4cad102761b8368e9, type: 2}
   caughtFish: {fileID: 0}
   catchDetected: 0
-  drop: {fileID: 8300000, guid: 05469b48428d13b48970d8157912cf08, type: 3}
+  drop: {fileID: 8300000, guid: 91e84f3f22aa39d49963f951c733da23, type: 3}

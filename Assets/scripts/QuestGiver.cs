@@ -31,6 +31,12 @@ public class QuestGiver : MonoBehaviour, IInteractable
     public AudioSource source;
     public AudioClip[] greetings;
     public AudioClip[] completion;
+
+    private GameObject Panel;
+    private TextMeshProUGUI dialogue;
+    public string text;
+
+    public int UIpopuptime = 3;
     private void Awake()
     {
         QuestID = CurrentQuest.id;
@@ -38,6 +44,11 @@ public class QuestGiver : MonoBehaviour, IInteractable
         questInfo = GameObject.Find("Info").GetComponent<TextMeshProUGUI>();
         progress = GameObject.Find("Progress").GetComponent<TextMeshProUGUI>();
         questInfo.text = string.Empty; progress.text = string.Empty;
+
+        dialogue = GameObject.Find("Dialogue").GetComponent<TextMeshProUGUI>();
+        dialogue.text = string.Empty;
+
+        Panel = GameObject.Find("SpeechBox");
     }
 
     private void OnEnable()
@@ -47,6 +58,17 @@ public class QuestGiver : MonoBehaviour, IInteractable
     private void OnDisable()
     {
         EventManager.Instance.questEvents.onQuestStateChange -= QuestStateChange;
+    }
+
+    public IEnumerator Uidelay()
+    {
+        Debug.Log("delay Started");
+        dialogue.text = text;
+        Panel.SetActive(true);
+        yield return new WaitForSeconds(UIpopuptime);
+        dialogue.text = string.Empty;
+        Panel.SetActive(false);
+        Debug.Log("delay finished");
     }
 
     private void QuestStateChange(Quests quests)
@@ -61,7 +83,6 @@ public class QuestGiver : MonoBehaviour, IInteractable
 
     public void ItemSubmissionCheck()
     {
-        //Debug.Log("item submission detected");
         if (InventoryManager.Instance.HasQuestItem(Type))
         {
             foreach (Items item in InventoryManager.Instance.items)
@@ -81,24 +102,25 @@ public class QuestGiver : MonoBehaviour, IInteractable
         {
             if (KeyItem != null)
             {
-                InventoryManager.Instance.AddItem(KeyItem);
-                foreach (GameObject step in CurrentQuest.steps)
+                InventoryManager.Instance.AddItem(KeyItem);                
+            }
+            foreach (GameObject step in CurrentQuest.steps)
+            {
+                QuestStep currstep = step.GetComponent<QuestStep>();
+                if (currstep != null)
                 {
-                    QuestStep currstep = step.GetComponent<QuestStep>();
-                    if (currstep != null)
-                    {
-                        questInfo.text = currstep.GetDetails();
-                    }
-                }
-
-                if (greetings.Length > 0)
-                {
-                    var index = Random.Range(0, greetings.Length);
-                    source.clip = greetings[index];
-                    source.volume = 1.0f; // Adjust this value as needed
-                    source.Play();
+                    questInfo.text = currstep.GetDetails();
                 }
             }
+
+            if (greetings.Length > 0)
+            {
+                int index = Random.Range(0, greetings.Length);
+                source.clip = greetings[index];
+                source.volume = 1.0f;
+                source.Play();
+            }
+            StartCoroutine(Uidelay());
             EventManager.Instance.questEvents.StartQuest(QuestID);
         }
         else if (currentQuestState.Equals(QuestState.COMPLETE))
@@ -107,7 +129,7 @@ public class QuestGiver : MonoBehaviour, IInteractable
             progress.text = string.Empty;
             if (completion.Length > 0)
             {
-                var index = Random.Range(0, completion.Length);
+                int index = Random.Range(0, completion.Length);
                 source.clip = completion[index];
                 source.volume = 1.0f; // Adjust this value as needed
                 source.Play();

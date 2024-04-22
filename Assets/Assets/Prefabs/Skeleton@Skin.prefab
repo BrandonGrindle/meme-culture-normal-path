@@ -1054,14 +1054,10 @@ MonoBehaviour:
   InAttackRange: 0
   InSightRange: 0
   ItemDrop: {fileID: 11400000, guid: 1ce4b9dc44a13af489b04c2072497ada, type: 2}
-  Cursed:
-  - {fileID: 8300000, guid: d8efc8cd65d7bc64e9f495d5d4b9ec44, type: 3}
-  - {fileID: 8300000, guid: 44cad8b406e5e6c4f9bd0f552f0d73bd, type: 3}
-  Playpoint: {fileID: 0}
   source: {fileID: 7719486839286021978}
-  Attacking: {fileID: 8300000, guid: 9c10e1bc655480e46813c098cd792c12, type: 3}
-  hurt: {fileID: 8300000, guid: cbcf8ea075c520540b6183f15859447b, type: 3}
-  Death: {fileID: 8300000, guid: b3a4806e5c6c8b64e907b7920fe6848f, type: 3}
+  Attacking: {fileID: 8300000, guid: 766cd077818792f4e847827d32a6c71a, type: 3}
+  hurt: {fileID: 8300000, guid: 97ade46d74c61c146a27f080171834c3, type: 3}
+  Death: {fileID: 8300000, guid: 2db12a06bc59a1743ad16f617b074204, type: 3}
 --- !u!195 &-4012310782191304460
 NavMeshAgent:
   m_ObjectHideFlags: 0
