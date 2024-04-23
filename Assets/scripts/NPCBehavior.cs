@@ -22,6 +22,16 @@ public class NPCBehavior : MonoBehaviour
 
     public AudioSource source;
     public AudioClip[] genericResponce;
+
+    [SerializeField] private int SpeechIntervalMin, SpeechIntervalMax;
+    bool playingAudio = false;
+
+    private IEnumerator randomVoiceRange()
+    {
+        yield return new WaitForSeconds(Random.Range(SpeechIntervalMin, SpeechIntervalMax));
+        playRandAudio();
+        playingAudio = false;
+    }
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -34,6 +44,11 @@ public class NPCBehavior : MonoBehaviour
     private void Update()
     {
         patrol();
+        if(!playingAudio)
+        {
+            playingAudio=true;
+            StartCoroutine(randomVoiceRange());
+        }
     }
 
     public void pickupItem()
@@ -96,6 +111,17 @@ public class NPCBehavior : MonoBehaviour
             }
 
             attempts--; 
+        }
+    }
+
+    private void playRandAudio()
+    {
+        if(genericResponce.Length > 0)
+        {
+            int index = Random.Range(0, genericResponce.Length);
+            source.clip = genericResponce[index];
+            source.volume = .4f;
+            source.Play();
         }
     }
 }

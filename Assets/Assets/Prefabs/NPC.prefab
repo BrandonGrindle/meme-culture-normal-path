@@ -504,6 +504,18 @@ MonoBehaviour:
   genericResponce:
   - {fileID: 8300000, guid: fa030f745576e2f49a861da97789ed1c, type: 3}
   - {fileID: 8300000, guid: b37914ff082b6634088af871fe7c854a, type: 3}
+  - {fileID: 8300000, guid: 170dc8da4c703a74bbd06be5365f64af, type: 3}
+  - {fileID: 8300000, guid: 9ead92c8d67a4d14a950206d00e54367, type: 3}
+  - {fileID: 8300000, guid: 8062c35f39b7f464b92926a07baa06a2, type: 3}
+  - {fileID: 8300000, guid: b84ff1abb11bcd0419a8ba6417b39962, type: 3}
+  - {fileID: 8300000, guid: 696ffe91f1d93ba4fb4bb1a402727dc3, type: 3}
+  - {fileID: 8300000, guid: be3cb22e7a3f965478342f536fe7836d, type: 3}
+  - {fileID: 8300000, guid: 5052d845ff543f046a10067b6391ba12, type: 3}
+  - {fileID: 8300000, guid: 94d05be946fd20346ad436306dc58421, type: 3}
+  - {fileID: 8300000, guid: b34f44b4b1a77824aa79c677553eabd5, type: 3}
+  - {fileID: 8300000, guid: f13f80141cbb626449eea4f88e459d70, type: 3}
+  SpeechIntervalMin: 15
+  SpeechIntervalMax: 45
 --- !u!195 &-2549600887106866780
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -582,7 +594,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

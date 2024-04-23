@@ -56,10 +56,10 @@ public class FishPoint : MonoBehaviour
 
     public IEnumerator FishBite(GameObject Bobble)
     {
+        AudioSource.PlayClipAtPoint(drop, Bobble.transform.position, 1);
         yield return new WaitForSeconds(Random.Range(WaitMin, WaitMax));
 
         Vector3 pos = Bobble.transform.position + new Vector3(0, 1, 0);
-        AudioSource.PlayClipAtPoint(drop, pos, 1);
         exclamationPointInstance = Instantiate(exclamationPoint, pos, Quaternion.identity);
         
         catchDetected = true;

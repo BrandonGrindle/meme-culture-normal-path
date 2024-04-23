@@ -1172,8 +1172,17 @@ MonoBehaviour:
   source: {fileID: -7133666970295560860}
   greetings:
   - {fileID: 8300000, guid: bf88d097497824247aa73d57095be33b, type: 3}
+  - {fileID: 8300000, guid: d2c56cb43906df548b2085dd1563ddeb, type: 3}
+  - {fileID: 8300000, guid: 48f3338667ea31f49bd843cf2a4e123f, type: 3}
+  - {fileID: 8300000, guid: cede0867dc3bb67439448c0aacc08fe1, type: 3}
+  - {fileID: 8300000, guid: 0b1cb72feefee7a4e8b675de6ad69f71, type: 3}
+  - {fileID: 8300000, guid: 5c01197234923384394a7f9639da80e0, type: 3}
+  - {fileID: 8300000, guid: fb3e64f9214d5a043a8517ef954f0647, type: 3}
   completion:
   - {fileID: 8300000, guid: 45f9e79b6e140d044a42e2a8ebd41522, type: 3}
+  - {fileID: 8300000, guid: 248cf8d0e16c2124380b13e7870b4c86, type: 3}
+  - {fileID: 8300000, guid: c1277d0a9bf8a1b4d980638b8cf2820f, type: 3}
+  - {fileID: 8300000, guid: 1d8efdeaece3f994f8c40ead3be816a9, type: 3}
   text: 
   UIpopuptime: 5
 --- !u!65 &488327638631480458
@@ -1253,7 +1262,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

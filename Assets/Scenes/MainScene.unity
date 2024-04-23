@@ -10261,6 +10261,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1d526f20654226d42b3e9c84a09323ae, type: 3}
   m_PrefabInstance: {fileID: 825675012}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &826729637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9162468033604544589, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
+  m_PrefabInstance: {fileID: 7049498781398249636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &826729638
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826729637}
+  m_Enabled: 1
 --- !u!1 &833737784
 GameObject:
   m_ObjectHideFlags: 0
@@ -11347,6 +11360,10 @@ PrefabInstance:
       propertyPath: KeyItem
       value: 
       objectReference: {fileID: 11400000, guid: 6723e9c1bb4b5994087c23851e6dd86e, type: 2}
+    - target: {fileID: 4429548625430333386, guid: 1e6807e80d3a0534a990aa4bc04f576f, type: 3}
+      propertyPath: UIpopuptime
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4429548625430333386, guid: 1e6807e80d3a0534a990aa4bc04f576f, type: 3}
       propertyPath: CurrentQuest
       value: 
@@ -14491,7 +14508,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8944336655422409497, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28831,7 +28849,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9152277707875990721, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1832845545}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9162468033604544589, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 826729638}
   m_SourcePrefab: {fileID: 100100000, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
 --- !u!4 &8338988566446521478 stripped
 Transform:
