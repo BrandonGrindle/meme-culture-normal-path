@@ -44,7 +44,7 @@ public class NPCBehavior : MonoBehaviour
     private void Update()
     {
         patrol();
-        if(!playingAudio)
+        if(!playingAudio && !captured)
         {
             playingAudio=true;
             StartCoroutine(randomVoiceRange());
