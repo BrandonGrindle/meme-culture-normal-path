@@ -62,13 +62,11 @@ public class QuestGiver : MonoBehaviour, IInteractable
 
     public IEnumerator Uidelay()
     {
-        Debug.Log("delay Started");
         dialogue.text = text;
         Panel.SetActive(true);
         yield return new WaitForSeconds(UIpopuptime);
         dialogue.text = string.Empty;
         Panel.SetActive(false);
-        Debug.Log("delay finished");
     }
 
     private void QuestStateChange(Quests quests)

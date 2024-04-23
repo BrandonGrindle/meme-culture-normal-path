@@ -1053,6 +1053,8 @@ MonoBehaviour:
   AttackRange: 1
   InAttackRange: 0
   InSightRange: 0
+  WaitTimeMin: 0
+  WaitTimeMax: 2
   ItemDrop: {fileID: 11400000, guid: 1ce4b9dc44a13af489b04c2072497ada, type: 2}
   source: {fileID: 7719486839286021978}
   Attacking: {fileID: 8300000, guid: 766cd077818792f4e847827d32a6c71a, type: 3}

@@ -102,7 +102,7 @@ namespace StarterAssets
 
         public Transform CastPoint;
         public GameObject castBauble;
-        public float castSpeed = 10.0f;
+        public float CastForce = 1.0f;
         private bool ReadyToCast = true;
         private Coroutine BobberReturnRoutine;
 
@@ -179,6 +179,7 @@ namespace StarterAssets
         public AudioClip Castflip;
         public AudioClip swordswing;
         public AudioClip[] reelit;
+        bool activeClip;
 
         public AudioClip BagUnzip;
         IEnumerator Cooldown()
@@ -208,16 +209,17 @@ namespace StarterAssets
             Rigidbody rb = currentBobber.GetComponent<Rigidbody>();
 
             Ray raycast = new Ray(_mainCamera.transform.position, _mainCamera.transform.forward);
-            if (Physics.Raycast(raycast, out RaycastHit hit, 500f, layerMask))
+            if (Physics.Raycast(raycast, out RaycastHit hit, 1000f, layerMask))
             {
+                Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.red, 25f);
                 Vector3 forceDir = (hit.point - CastPoint.position).normalized;
 
-                Vector3 AppliedForce = forceDir * castSpeed + transform.up * 5f;
+                Vector3 AppliedForce = forceDir * CastForce + transform.up * 5f;
                 rb.AddForce(AppliedForce, ForceMode.Impulse);
             }
             else
             {
-                rb.AddForce(transform.forward * castSpeed + transform.up * 5f, ForceMode.Impulse);
+                rb.AddForce(transform.forward * CastForce + transform.up * 5f, ForceMode.Impulse);
             }
             _input.useItem = false;
 
@@ -232,6 +234,12 @@ namespace StarterAssets
             healthbar.value = PlayerHealth;
 
             _animator.SetBool(_animIDDeath, false);
+        }
+
+        IEnumerator AudioDelay(AudioClip clip)
+        {
+            yield return new WaitForSeconds(clip.length);
+            activeClip = false;
         }
         private bool IsCurrentDeviceMouse
         {
@@ -264,7 +272,7 @@ namespace StarterAssets
             healthbar.value = PlayerHealth;
 
             armorRating = GameObject.Find("Armor Rating").GetComponentInChildren<TextMeshProUGUI>();
-            armorRating.text = Defense.ToString();
+            armorRating.text = "Defense: " + Defense.ToString();
 
             HeldItem = GameObject.Find("EquiptItem").GetComponent<Image>();
             HeldItem.sprite = null;
@@ -305,6 +313,7 @@ namespace StarterAssets
                 Interact();
                 OpenInventory();
                 UseItem();
+                closeApp();
             }
         }
 
@@ -669,7 +678,7 @@ namespace StarterAssets
                     case 2:
                         if (WeaponController.instance.canAttack)
                         {
-                            AudioSource.PlayClipAtPoint(swordswing, _controller.center, 1.6f);
+                            AudioSource.PlayClipAtPoint(swordswing, _controller.center, 1f);
                             WeaponController.instance.Attack(_animator, _animIDSwordSwing);
                         }
                         break;
@@ -685,8 +694,8 @@ namespace StarterAssets
         {
             ReadyToCast = false;
             _animator.SetBool(_animIDCast, true);
-            AudioSource.PlayClipAtPoint(Castflip, _controller.center,1.6f);
-            StartCoroutine(DelayedCast(2.1f));
+            AudioSource.PlayClipAtPoint(Castflip, _controller.center,1f);
+            StartCoroutine(DelayedCast(2f));
         }
 
         private void reelIn()
@@ -694,9 +703,19 @@ namespace StarterAssets
             if (currentBobber != null)
             {
                 if (!returning) { BobberReturnRoutine = StartCoroutine(BobberReturn()); }
-                AudioSource.PlayClipAtPoint(Castflip, _controller.center, 1);
+                if (!activeClip)
+                {
+                    activeClip = true;
+                    if (reelit.Length > 0)
+                    {
+                        int index = Random.Range(0, reelit.Length);
+                        AudioSource.PlayClipAtPoint(reelit[index], _controller.center, 1);
+                        StartCoroutine(AudioDelay(Castflip));
+                    }
+                    
+                }
                 Vector3 ReelLoc = (interactSource.position - currentBobber.transform.position).normalized;
-                float reelSpeed = 5f;
+                float reelSpeed = Mathf.Lerp(1f,3f,Vector3.Distance(currentBobber.transform.position, interactSource.position));
                 Rigidbody rb = currentBobber.GetComponent<Rigidbody>();
                 FishingBobble FishingScript = currentBobber.GetComponent<FishingBobble>();
 
@@ -780,5 +799,12 @@ namespace StarterAssets
 
             }
         }
+
+        public void closeApp()
+        {
+            
+            if (_input.close) { Debug.Log("ClosingApp");  Application.Quit(); }
+        }
+            
     }
 }

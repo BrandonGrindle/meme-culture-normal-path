@@ -26,7 +26,7 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] private int SpeechIntervalMin, SpeechIntervalMax;
     bool playingAudio = false;
 
-    private IEnumerator randomVoiceRange()
+    IEnumerator randomVoiceRange()
     {
         yield return new WaitForSeconds(Random.Range(SpeechIntervalMin, SpeechIntervalMax));
         playRandAudio();

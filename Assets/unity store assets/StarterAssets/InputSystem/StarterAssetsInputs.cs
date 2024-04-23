@@ -16,6 +16,7 @@ namespace StarterAssets
 		public bool interact;
 		public bool Inventory;
 		public bool useItem;
+		public bool close;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -62,6 +63,11 @@ namespace StarterAssets
 		{
 			UseItemInput(value.isPressed);
 		}
+
+		public void OnCloseApp(InputValue value)
+		{
+			CloseApp(value.isPressed);
+		}
 #endif
 
 
@@ -100,6 +106,10 @@ namespace StarterAssets
 			useItem = newUseState;
         }
 
+		public void CloseApp(bool newCloseState)
+		{
+			close = newCloseState;
+		}
         private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);

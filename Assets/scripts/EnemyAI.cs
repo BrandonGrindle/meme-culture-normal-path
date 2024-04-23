@@ -25,6 +25,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private bool InAttackRange, InSightRange;
     bool alreadyAttacked;
 
+    [SerializeField] private float WaitTimeMin, WaitTimeMax;
+
     [SerializeField] private Items ItemDrop;
 
     private Animator animator;
@@ -41,6 +43,14 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Destroy(this.gameObject);
+    }
+
+    IEnumerator WaitAtPoint()
+    {
+        yield return new WaitForSeconds(UnityEngine.Random.Range(WaitTimeMin,WaitTimeMax));
+        walkpointSet = false;
+        agent.isStopped = false;
+
     }
     private void Awake()
     {
@@ -102,7 +112,8 @@ public class EnemyAI : MonoBehaviour
             }
             else if (disttoWP.magnitude < 1f)
             {
-                walkpointSet = false;
+                agent.isStopped = true;
+                StartCoroutine(WaitAtPoint());
             }
             animator.SetFloat(_animIDrun, agent.velocity.magnitude);
         }
