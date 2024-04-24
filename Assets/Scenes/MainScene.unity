@@ -28472,6 +28472,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 36986817b7317864f8b0f96ac28dafd2, type: 3}
     - target: {fileID: 1186133405911432997, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
+      propertyPath: CastForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186133405911432997, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
       propertyPath: CastPoint
       value: 
       objectReference: {fileID: 940548609}

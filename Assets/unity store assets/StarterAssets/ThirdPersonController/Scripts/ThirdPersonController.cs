@@ -102,7 +102,7 @@ namespace StarterAssets
 
         public Transform CastPoint;
         public GameObject castBauble;
-        public float CastForce = 1.0f;
+        public float CastForce = 10.0f;
         private bool ReadyToCast = true;
         private Coroutine BobberReturnRoutine;
 
@@ -214,6 +214,7 @@ namespace StarterAssets
                 Debug.DrawLine(_mainCamera.transform.position, hit.point, Color.red, 25f);
                 Vector3 forceDir = (hit.point - CastPoint.position).normalized;
 
+                Debug.Log(forceDir);
                 Vector3 AppliedForce = forceDir * CastForce + transform.up * 5f;
                 rb.AddForce(AppliedForce, ForceMode.Impulse);
             }
@@ -222,6 +223,10 @@ namespace StarterAssets
                 rb.AddForce(transform.forward * CastForce + transform.up * 5f, ForceMode.Impulse);
             }
             _input.useItem = false;
+
+            yield return new WaitForSeconds(2);
+            Debug.Log("anim delay ended");
+            _animator.SetBool(_animIDCast, false);
 
         }
 
@@ -696,7 +701,7 @@ namespace StarterAssets
             ReadyToCast = false;
             _animator.SetBool(_animIDCast, true);
             AudioSource.PlayClipAtPoint(Castflip, _controller.center,1f);
-            StartCoroutine(DelayedCast(2f));
+            StartCoroutine(DelayedCast(2.0f));
         }
 
         private void reelIn()
