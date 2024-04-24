@@ -676,7 +676,8 @@ namespace StarterAssets
                         }
                         break;
                     case 2:
-                        if (WeaponController.instance.canAttack)
+                        WeaponController.instance.attacking = _animator.GetBool(_animIDSwordSwing);
+                        if (!WeaponController.instance.attacking)
                         {
                             AudioSource.PlayClipAtPoint(swordswing, _controller.center, 1f);
                             WeaponController.instance.Attack(_animator, _animIDSwordSwing);

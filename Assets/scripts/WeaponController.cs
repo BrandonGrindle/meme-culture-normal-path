@@ -10,7 +10,7 @@ public class WeaponController : MonoBehaviour
     public static WeaponController instance;
 
     [Header("Weapon Stats")]
-    [SerializeField] private float AttackCooldown = 1f;
+    //[SerializeField] private float AttackCooldown = 2.4f;
     [SerializeField] private float AttackRange = .5f;
     [SerializeField] private GameObject WeaponOrigin;
     [SerializeField] private int weaponDmg = 5;
@@ -18,6 +18,8 @@ public class WeaponController : MonoBehaviour
     public bool canAttack = true;
     private int layerMask;
     public Camera _mainCamera;
+
+    public bool attacking;
     private void Awake()
     {
         instance = this;
@@ -27,7 +29,6 @@ public class WeaponController : MonoBehaviour
 
     public void Attack(Animator anim, int AnimID)
     {
-        canAttack = false;
         Vector3 attackDirection = _mainCamera.transform.forward;
         Vector3 origin = WeaponOrigin.transform.position;
 
@@ -59,13 +60,5 @@ public class WeaponController : MonoBehaviour
         {
             Debug.Log("Attack direction is invalid (backwards through player).");
         }
-
-        StartCoroutine(Cooldown());
-    }
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(AttackCooldown);
-        canAttack = true;
     }
 }

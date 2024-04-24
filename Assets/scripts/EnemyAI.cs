@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float WaitTimeMin, WaitTimeMax;
 
     [SerializeField] private Items ItemDrop;
-
+    bool isDead = false;
     private Animator animator;
     private int _animIDAttack;
     private int _animIDDamaged;
@@ -71,9 +71,16 @@ public class EnemyAI : MonoBehaviour
         InSightRange = Physics.CheckSphere(transform.position, SightRange, WhatIsPlayer);
         InAttackRange = Physics.CheckSphere(transform.position, AttackRange, WhatIsPlayer);
 
-        if (!InSightRange && !InAttackRange) { patrol(); }
-        if (InSightRange && !InAttackRange) { chase(); }
-        if (InSightRange && InAttackRange) { Attack(); }
+        if (!isDead)
+        {
+            if (!InSightRange && !InAttackRange) { patrol(); }
+            if (InSightRange && !InAttackRange) { chase(); }
+            if (InSightRange && InAttackRange) { Attack(); }
+        }
+        else
+        {
+            agent.isStopped = true;
+        }
     }
 
     public void DamageTaken(int damage)
@@ -85,6 +92,7 @@ public class EnemyAI : MonoBehaviour
         source.Play();
         if (health <= 0)
         {
+            isDead = true;
             animator.SetBool(_animIDDeath, true);
             EventManager.Instance.cstmevents.SkeletonKilled();
             InventoryManager.Instance.AddItem(ItemDrop);

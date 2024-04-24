@@ -29059,6 +29059,10 @@ PrefabInstance:
       propertyPath: WeaponOrigin
       value: 
       objectReference: {fileID: 963486100}
+    - target: {fileID: 8282721481901637848, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
+      propertyPath: AttackCooldown
+      value: 2.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8287707803116986994, guid: ac8ba7e7b8b0cae4f93a8fc307a8c508, type: 3}
       propertyPath: m_Layer
       value: 3
